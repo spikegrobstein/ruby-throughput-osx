@@ -15,16 +15,17 @@ end
 # supports up to TB
 def hr_unit(val_in_bytes)
   val_in_bytes = val_in_bytes.to_f
-  units = %w(b\  KB MB GB TB)
+  units = %w(KB MB GB TB)
+  
   while unit = units.shift
+    val_in_bytes /= 1024.0
+    
     if val_in_bytes < 1024
       break
     end
-    
-    val_in_bytes /= 1024.0
   end
-  
-  "%.2f%s/s" % [val_in_bytes, unit]
+    
+  "%.2f%s/s" % [ val_in_bytes, unit ]
 end
 
 def parse_input(input)
