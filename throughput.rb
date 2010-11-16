@@ -1,6 +1,8 @@
 # usage:
 # netstat -I bond0 -w 1 -b | ruby throughput.rb
 
+require 'pp'
+
 def parse_line(line)
   column_titles = [ :packets_in, :errs_in, :bytes_in, :packets_out, :errs_out, :bytes_out, :colls ]
   columns = line.split(/\s+/)
@@ -40,4 +42,16 @@ def parse_input(input)
   end
 end
 
-parse_input(STDIN)
+if ARGV.length == 0
+  # no input, so parse STDIN
+  parse_input(STDIN)
+else
+  # interface was supplied, so let's take some work away from the user and construct the command ourselves
+  interface = ARGV.shift
+  
+  command = "netstat -I #{interface} -w 1 -b"
+  
+  IO.popen(command) do |input|
+    parse_input input
+  end
+end
