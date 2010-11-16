@@ -36,8 +36,10 @@ def parse_input(input)
     next unless line.match /(\s+\d+){7}/
   
     line = parse_line(line)
+    timestamp = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+    justsize = 10 # the size of the text justification
   
-    puts "#{Time.now} --  UP: %s  |  DOWN: %s" % [ hr_unit(line[:bytes_out]).rjust(10), hr_unit(line[:bytes_in]).rjust(10) ]
+    puts "#{timestamp} -- UP: %s  |  DOWN: %s" % [ hr_unit(line[:bytes_out]).rjust(justsize), hr_unit(line[:bytes_in]).rjust(justsize) ]
   
   end
 end
