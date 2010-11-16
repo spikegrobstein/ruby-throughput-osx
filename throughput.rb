@@ -1,5 +1,8 @@
 # usage:
-# netstat -I bond0 -w 1 -b | ruby throughput.rb
+#   parse stdin:
+#     netstat -I bond0 -w 1 -b | ruby throughput.rb
+#   interface throughput:
+#     ruby throughput.rb en1
 
 require 'pp'
 
