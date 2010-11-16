@@ -35,7 +35,7 @@ def parse_input(input)
   
     line = parse_line(line)
   
-    puts "#{Time.now} --  UP:  %s\t | DOWN:  %s" % [ hr_unit(line[:bytes_out]).ljust(10), hr_unit(line[:bytes_in]).ljust(10) ]
+    puts "#{Time.now} --  UP: %s  |  DOWN: %s" % [ hr_unit(line[:bytes_out]).rjust(10), hr_unit(line[:bytes_in]).rjust(10) ]
   
   end
 end
